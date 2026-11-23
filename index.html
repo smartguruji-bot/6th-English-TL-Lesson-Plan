@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Class 6 English (TL) - 5E Lesson Plan Generator | SmartGuruji</title>
+  <style>
+    body { margin: 0; padding: 0; background: #f1f5f9; color: #1e293b; }
+    #sg6EngTlLpRoot, #sg6EngTlLpRoot * { box-sizing: border-box; }
+    #sg6EngTlLpRoot {
+      width: 100%;
+      max-width: 1240px;
+      margin: 20px auto;
+      padding: 0 10px;
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+      color: #1e293b !important;
+    }
+    #sg6EngTlLpRoot .sg6etlp-shell { background: #fff; border: 1px solid #e2e8f0; border-radius: 22px; overflow: hidden; box-shadow: 0 18px 38px rgba(15, 23, 42, .08); }
+    #sg6EngTlLpRoot .sg6etlp-hero { padding: 30px 22px 24px; text-align: center; color: #fff !important; background: linear-gradient(135deg, #047857, #0369a1 55%, #1e1b4b); }
+    #sg6EngTlLpRoot .sg6etlp-brand { display: flex; justify-content: center; align-items: center; gap: 12px; margin-bottom: 10px; }
+    #sg6EngTlLpRoot .sg6etlp-logo { display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 14px; background: rgba(255, 255, 255, .16); border: 1px solid rgba(255, 255, 255, .35); font-size: 26px; }
+    #sg6EngTlLpRoot .sg6etlp-brand h2 { margin: 0 !important; color: #fff !important; font-size: 28px !important; font-weight: 900; }
+    #sg6EngTlLpRoot .sg6etlp-hero h3 { margin: 0 !important; color: #f8fafc !important; font-size: 20px !important; font-weight: 800; }
+    #sg6EngTlLpRoot .sg6etlp-tags { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+    #sg6EngTlLpRoot .sg6etlp-tag { padding: 6px 13px; border-radius: 50px; background: rgba(0, 0, 0, .22); border: 1px solid rgba(255, 255, 255, .28); color: #fff !important; font-size: 13px; font-weight: 700; }
+    #sg6EngTlLpRoot .sg6etlp-work { padding: 24px; background: #f8fafc; }
+    #sg6EngTlLpRoot .sg6etlp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    #sg6EngTlLpRoot .sg6etlp-card { background: #fff; border: 1px solid #cbd5e1; border-radius: 16px; padding: 18px; box-shadow: 0 4px 8px rgba(15, 23, 42, .03); }
+    #sg6EngTlLpRoot .sg6etlp-full { grid-column: 1 / -1; }
+    #sg6EngTlLpRoot .sg6etlp-label { display: flex; align-items: center; gap: 9px; margin-bottom: 10px; font-weight: 800; font-size: 15px; color: #0f172a !important; }
+    #sg6EngTlLpRoot .sg6etlp-step { padding: 4px 9px; border-radius: 8px; background: #e2e8f0; color: #334155 !important; font-size: 12px; font-weight: 900; }
+    #sg6EngTlLpRoot .sg6etlp-control { width: 100%; padding: 11px 14px; border: 2px solid #cbd5e1; border-radius: 10px; background: #fff !important; color: #0f172a !important; font: 600 14.5px inherit; }
+    #sg6EngTlLpRoot .sg6etlp-control:focus { outline: none; border-color: #047857; box-shadow: 0 0 0 3px rgba(4, 120, 87, .15); }
+    #sg6EngTlLpRoot .sg6etlp-modeTabs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    #sg6EngTlLpRoot .sg6etlp-tabBtn { padding: 12px 14px; border: 2px solid #cbd5e1; border-radius: 12px; background: #f8fafc; color: #1e293b !important; font: 800 14px inherit; cursor: pointer; transition: .2s; text-align: center; }
+    #sg6EngTlLpRoot .sg6etlp-tabBtn:hover { border-color: #047857; background: #ecfdf5; }
+    #sg6EngTlLpRoot .sg6etlp-tabBtn.sg6etlp-active { background: linear-gradient(135deg, #047857, #0369a1) !important; color: #fff !important; border-color: transparent; box-shadow: 0 4px 12px rgba(3, 105, 161, .22); }
+    #sg6EngTlLpRoot .sg6etlp-lesson-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
+    #sg6EngTlLpRoot .sg6etlp-catTabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+    #sg6EngTlLpRoot .sg6etlp-catBtn { padding: 6px 13px; border: 1px solid #94a3b8; border-radius: 20px; background: #fff; color: #1e293b !important; font: 700 12.5px inherit; cursor: pointer; }
+    #sg6EngTlLpRoot .sg6etlp-catBtn.sg6etlp-catOn { background: #0369a1 !important; color: #fff !important; border-color: #0369a1; }
+    #sg6EngTlLpRoot .sg6etlp-selectall { padding: 8px 13px; border: 0; border-radius: 9px; background: #334155 !important; color: #fff !important; font: 800 13px inherit; cursor: pointer; }
+    #sg6EngTlLpRoot .sg6etlp-lessons { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+    #sg6EngTlLpRoot .sg6etlp-lesson { display: flex; gap: 9px; align-items: flex-start; padding: 10px 12px; background: #f1f5f9 !important; border: 1px solid #cbd5e1; border-radius: 10px; cursor: pointer; font-size: 13.5px !important; font-weight: 700 !important; line-height: 1.45; color: #0f172a !important; opacity: 1 !important; visibility: visible !important; }
+    #sg6EngTlLpRoot .sg6etlp-lesson span { color: #0f172a !important; display: inline !important; visibility: visible !important; }
+    #sg6EngTlLpRoot .sg6etlp-lesson:hover { background: #e2e8f0 !important; border-color: #94a3b8; }
+    #sg6EngTlLpRoot .sg6etlp-lesson input { width: 17px; height: 17px; margin-top: 2px; accent-color: #047857; flex-shrink: 0; }
+    #sg6EngTlLpRoot .sg6etlp-badge { display: inline-block !important; padding: 2px 6px; border-radius: 5px; font-size: 10.5px !important; font-weight: 800 !important; margin-right: 5px; text-transform: uppercase; }
+    #sg6EngTlLpRoot .sg6etlp-bProse { background: #dbeafe !important; color: #1e40af !important; }
+    #sg6EngTlLpRoot .sg6etlp-bPoem { background: #fce7f3 !important; color: #9d174d !important; }
+    #sg6EngTlLpRoot .sg6etlp-bSupp { background: #fef3c7 !important; color: #92400e !important; }
+    #sg6EngTlLpRoot .sg6etlp-actions { margin-top: 20px; padding: 16px; background: #fff; border: 1px solid #cbd5e1; border-radius: 16px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    #sg6EngTlLpRoot .sg6etlp-btn { width: 100%; padding: 13px 12px; border: 0; border-radius: 10px; color: #fff !important; font: 800 14px inherit; cursor: pointer; transition: .2s; box-shadow: 0 5px 12px rgba(15, 23, 42, .11); }
+    #sg6EngTlLpRoot .sg6etlp-btn:hover:not(:disabled) { transform: translateY(-2px); filter: brightness(1.08); }
+    #sg6EngTlLpRoot .sg6etlp-btn:disabled { opacity: .5; cursor: not-allowed; }
+    #sg6EngTlLpRoot .sg6etlp-generate { background: linear-gradient(135deg, #7c3aed, #5b21b6) !important; }
+    #sg6EngTlLpRoot .sg6etlp-preview { background: #2563eb !important; }
+    #sg6EngTlLpRoot .sg6etlp-print { background: #059669 !important; }
+    #sg6EngTlLpRoot .sg6etlp-status { display: none; margin-top: 14px; padding: 11px 14px; border-radius: 10px; font-size: 14px; font-weight: 800; text-align: center; }
+    #sg6EngTlLpRoot .sg6etlp-ok { display: block; background: #dcfce7; color: #166534; border: 1px solid #86efac; }
+    #sg6EngTlLpRoot .sg6etlp-warn { display: block; background: #fef3c7; color: #92400e; border: 1px solid #fcd34d; }
+    #sg6EngTlLpRoot .sg6etlp-previewArea { display: none; padding: 24px; background: #e2e8f0; border-top: 1px solid #cbd5e1; overflow-x: auto; }
+    #sg6EngTlLpRoot .sg6etlp-previewBar { max-width: 297mm; margin: 0 auto 14px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+    #sg6EngTlLpRoot .sg6etlp-miniTab { padding: 8px 16px; border: 2px solid #94a3b8; border-radius: 50px; background: #fff; color: #1e293b !important; font: 800 13px inherit; cursor: pointer; }
+    #sg6EngTlLpRoot .sg6etlp-miniTab.sg6etlp-active { background: #047857 !important; color: #fff !important; border-color: #047857; }
+    #sg6EngTlLpRoot .sg6etlp-sheet { width: 277mm; min-height: 190mm; margin: 0 auto 24px; padding: 11mm 12mm 17mm; background: #fff; color: #000 !important; box-shadow: 0 10px 30px rgba(0, 0, 0, .15); font-size: 13px; line-height: 1.48; position: relative; border: 2.5px solid #000; outline: 1px solid #000; outline-offset: -5px; page-break-after: always; }
+    #sg6EngTlLpRoot .sg6etlp-sheet:last-child { page-break-after: auto; }
+    #sg6EngTlLpRoot .sg6etlp-docHeader { text-align: center; border-bottom: 2px solid #000; padding-bottom: 8px; margin-bottom: 10px; }
+    #sg6EngTlLpRoot .sg6etlp-school { font-size: 19px; font-weight: 900; text-transform: uppercase; margin: 0; color: #000 !important; }
+    #sg6EngTlLpRoot .sg6etlp-subTitle { font-size: 14.5px; font-weight: 800; margin: 3px 0 6px; letter-spacing: .3px; color: #000 !important; }
+    #sg6EngTlLpRoot .sg6etlp-metaGrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px 12px; text-align: left; font-size: 12.5px; font-weight: 700; padding: 6px 8px; background: #f8fafc; border: 1px solid #475569; border-radius: 4px; margin-top: 6px; color: #000 !important; }
+    #sg6EngTlLpRoot .sg6etlp-objBox { border: 1px solid #000; padding: 7px 10px; margin: 8px 0 10px; background: #fff; font-size: 12.5px; color: #000 !important; }
+    #sg6EngTlLpRoot .sg6etlp-objBox strong { font-size: 13px; }
+    #sg6EngTlLpRoot .sg6etlp-objBox ul { margin: 4px 0 0 18px; padding: 0; }
+    #sg6EngTlLpRoot .sg6etlp-table { width: 100%; border-collapse: collapse; table-layout: fixed; margin-top: 6px; }
+    #sg6EngTlLpRoot .sg6etlp-table th, #sg6EngTlLpRoot .sg6etlp-table td { border: 1px solid #000; padding: 6px 7px; vertical-align: top; word-wrap: break-word; color: #000 !important; }
+    #sg6EngTlLpRoot .sg6etlp-table th { background: #e2e8f0; font-size: 12px; font-weight: 900; text-align: center; text-transform: uppercase; }
+    #sg6EngTlLpRoot .sg6etlp-stageTag { display: inline-block; padding: 2px 7px; border: 1px solid #000; border-radius: 3px; background: #f1f5f9; font-weight: 900; font-size: 11.5px; margin-bottom: 5px; letter-spacing: .5px; }
+    #sg6EngTlLpRoot .sg6etlp-dateBox { font-size: 11.5px; font-weight: 700; line-height: 2.2; }
+    #sg6EngTlLpRoot .sg6etlp-reflList { margin: 0; padding-left: 13px; font-size: 11.5px; line-height: 1.55; }
+    #sg6EngTlLpRoot .sg6etlp-reflSpace { height: 24px; border-bottom: 1px dotted #94a3b8; margin-top: 4px; }
+    #sg6EngTlLpRoot .sg6etlp-signRow { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 26px; padding-top: 16px; border-top: 1.5px solid #000; font-size: 13px; font-weight: 800; color: #000 !important; }
+    #sg6EngTlLpRoot .sg6etlp-signCol { text-align: center; min-width: 195px; }
+    #sg6EngTlLpRoot .sg6etlp-signLine { height: 40px; border-bottom: 1.5px solid #000; margin-bottom: 6px; }
+    #sg6EngTlLpRoot .sg6etlp-wsTitle { text-align: center; font-size: 16px; font-weight: 900; text-decoration: underline; margin: 6px 0 10px; }
+    #sg6EngTlLpRoot .sg6etlp-wsQ { margin: 8px 0 6px; font-size: 13.5px; font-weight: 700; }
+    #sg6EngTlLpRoot .sg6etlp-wsLine { height: 24px; border-bottom: 1px dotted #555; margin: 4px 0 10px 16px; }
+    #sg6EngTlLpRoot .sg6etlp-watermark { position: absolute; right: 12px; bottom: 7px; font-size: 10px; color: rgba(0, 0, 0, .45) !important; font-style: italic; font-weight: 800; letter-spacing: .5px; pointer-events: none; }
+
+    @media (max-width: 900px) {
+      #sg6EngTlLpRoot .sg6etlp-lessons { grid-template-columns: 1fr 1fr; }
+      #sg6EngTlLpRoot .sg6etlp-actions { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 700px) {
+      #sg6EngTlLpRoot .sg6etlp-grid,
+      #sg6EngTlLpRoot .sg6etlp-modeTabs,
+      #sg6EngTlLpRoot .sg6etlp-lessons { grid-template-columns: 1fr; }
+      #sg6EngTlLpRoot .sg6etlp-full { grid-column: auto; }
+    }
+    @media print {
+      * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+      body { background: #fff !important; }
+      body * { visibility: hidden !important; }
+      #sg6EngTlLpRoot, #sg6EngTlLpRoot * { visibility: visible !important; }
+      #sg6EngTlLpRoot { position: absolute; left: 0; top: 0; width: 100%; max-width: none; margin: 0; padding: 0; }
+      #sg6EngTlLpRoot .sg6etlp-hero,
+      #sg6EngTlLpRoot .sg6etlp-work,
+      #sg6EngTlLpRoot .sg6etlp-previewBar { display: none !important; }
+      #sg6EngTlLpRoot .sg6etlp-previewArea { display: block !important; padding: 0 !important; border: 0 !important; background: transparent !important; overflow: visible !important; }
+      #sg6EngTlLpRoot .sg6etlp-sheet { width: 100%; min-height: 185mm; margin: 0; padding: 8mm 9mm 15mm; box-shadow: none; border: 2px solid #000 !important; outline: 1px solid #000 !important; outline-offset: -5px !important; }
+      #sg6EngTlLpRoot .sg6etlp-table tr { break-inside: avoid; }
+      #sg6EngTlLpRoot .sg6etlp-watermark { display: block !important; position: absolute; right: 10px; bottom: 6px; font-size: 9.5px !important; color: rgba(0, 0, 0, .48) !important; }
+      @page { size: A4 landscape; margin: 8mm; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="sg6EngTlLpRoot">
+  <div class="sg6etlp-shell">
+    <header class="sg6etlp-hero">
+      <div class="sg6etlp-brand">
+        <div class="sg6etlp-logo">📘</div>
+        <h2>SmartGuruji</h2>
+      </div>
+      <h3>Class 6 English (Third Language) – 5E Lesson Plan Generator</h3>
+      <div class="sg6etlp-tags">
+        <span class="sg6etlp-tag">📝 5E (KTBS Revised Syllabus)</span>
+        <span class="sg6etlp-tag">📚 All 23 Topics (9 Prose + 9 Poems + 5 Supplementary)</span>
+        <span class="sg6etlp-tag">📄 A4 Landscape Bordered PDF</span>
+        <span class="sg6etlp-tag">✍️ Date &amp; HM Signature Ready</span>
+      </div>
+    </header>
+
+    <section class="sg6etlp-work">
+      <div class="sg6etlp-grid">
+        <div class="sg6etlp-card">
+          <div class="sg6etlp-label"><span class="sg6etlp-step">1</span>School Name</div>
+          <input id="sg6etlpSchool" class="sg6etlp-control" type="text" placeholder="e.g., Govt. Higher Primary School">
+        </div>
+        <div class="sg6etlp-card">
+          <div class="sg6etlp-label"><span class="sg6etlp-step">2</span>Teacher's Name</div>
+          <input id="sg6etlpTeacher" class="sg6etlp-control" type="text" placeholder="e.g., Sachin Kamate">
+        </div>
+        <div class="sg6etlp-card">
+          <div class="sg6etlp-label"><span class="sg6etlp-step">3</span>Academic Year &amp; Month</div>
+          <input id="sg6etlpYear" class="sg6etlp-control" type="text" value="2026-27" placeholder="e.g., 2026-27 / June">
+        </div>
+        <div class="sg6etlp-card">
+          <div class="sg6etlp-label"><span class="sg6etlp-step">4</span>Periods / Duration</div>
+          <select id="sg6etlpPeriods" class="sg6etlp-control">
+            <option value="4 Periods (40 mins each)">4 Periods (40 mins each)</option>
+            <option value="6 Periods (40 mins each)" selected>6 Periods (40 mins each)</option>
+            <option value="8 Periods (40 mins each)">8 Periods (40 mins each)</option>
+          </select>
+        </div>
+
+        <div class="sg6etlp-card sg6etlp-full">
+          <div class="sg6etlp-label"><span class="sg6etlp-step">5</span>Select Output Format</div>
+          <div class="sg6etlp-modeTabs">
+            <button type="button" class="sg6etlp-tabBtn sg6etlp-active" data-mode="plan">📋 5E Lesson Plan (Official Register Format)</button>
+            <button type="button" class="sg6etlp-tabBtn" data-mode="plan_ws">📝 Lesson Plan + Evaluation Worksheet (Print Both)</button>
+          </div>
+        </div>
+
+        <div class="sg6etlp-card sg6etlp-full">
+          <div class="sg6etlp-lesson-head">
+            <div class="sg6etlp-label" style="margin:0"><span class="sg6etlp-step">6</span>Select One or More Lessons (Class 6 English TL)</div>
+            <button type="button" id="sg6etlpSelectAll" class="sg6etlp-selectall">Select / Deselect Visible</button>
+          </div>
+          <div class="sg6etlp-catTabs" id="sg6etlpCatTabs">
+            <button type="button" class="sg6etlp-catBtn sg6etlp-catOn" data-cat="all">All (23)</button>
+            <button type="button" class="sg6etlp-catBtn" data-cat="prose">Prose (9)</button>
+            <button type="button" class="sg6etlp-catBtn" data-cat="poem">Poems (9)</button>
+            <button type="button" class="sg6etlp-catBtn" data-cat="supp">Supplementary Reading (5)</button>
+          </div>
+          <div class="sg6etlp-lessons" id="sg6etlpLessons"></div>
+        </div>
+      </div>
+
+      <div class="sg6etlp-actions">
+        <button type="button" id="sg6etlpGenerate" class="sg6etlp-btn sg6etlp-generate">📄 Generate Lesson Plan</button>
+        <button type="button" id="sg6etlpPreview" class="sg6etlp-btn sg6etlp-preview" disabled>👁️ View Preview</button>
+        <button type="button" id="sg6etlpPrint" class="sg6etlp-btn sg6etlp-print" disabled>🖨️ Print / Save as PDF</button>
+      </div>
+      <div id="sg6etlpStatus" class="sg6etlp-status"></div>
+    </section>
+
+    <section id="sg6etlpPreviewArea" class="sg6etlp-previewArea">
+      <div class="sg6etlp-previewBar">
+        <button type="button" class="sg6etlp-miniTab sg6etlp-active" data-mode="plan">📋 5E Lesson Plan Only</button>
+        <button type="button" class="sg6etlp-miniTab" data-mode="plan_ws">📝 Lesson Plan + Evaluation Worksheet</button>
+      </div>
+      <div id="sg6etlpPaperWrap"></div>
+    </section>
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  function initApp() {
+    var root = document.getElementById("sg6EngTlLpRoot");
+    if (!root || root.getAttribute("data-ready") === "1") return;
+    root.setAttribute("data-ready", "1");
+
+    var LESSONS = [
+      {
+        id: "u1p", unit: "UNIT - 1 [PROSE]", cat: "prose", title: "In A Vegetable Shop", author: "KTBS Textbook (pp. 1-10)",
+        overall: ["Practice everyday greetings and polite classroom conversations.", "Read and comprehend the nutritional value of vegetables.", "Classify vegetables, famous Karnataka fruits, and use degrees of comparison (soft, softer, softest)."],
+        engage: { obj: "Develop spoken fluency in everyday greetings and introductions.", act: "Pre-reading pair dialogues (pp. 1-2): Practice Mary-Ashraf, Nadeem-Teacher, Latha-Kala, and Girish-Nithin conversations. Ask: Which vegetables do you buy from the market? Introduce 'In A Vegetable Shop'.", tlm: "Textbook, Real/Flashcard Vegetables, Blackboard", cce: "Pair role-play observation, Checklist" },
+        explore: { obj: "Listen to expressive model reading and understand new vocabulary.", act: "Teacher reads the dialogues of Kiran, Vendor, Carrot, Spinach, Pumpkin, and Curry leaves. Introduce glossary: vendor, sambar, sparkling, spinach, robust, aroma, ignore, chutney. Silent reading to find which vegetables Kiran bought.", tlm: "Textbook, Dictionary, Picture Cards", cce: "Reading comprehension checklist" },
+        explain: { obj: "Comprehend health benefits of vegetables and learn degrees of comparison.", act: "Match vegetables with their benefits (p. 6): Pumpkin-slim, Beans-vitamins, Carrots-bright eyes, Spinach-iron, Tomato-soup/salad. Classify vegetables by how they grow (underground, creepers, small plants, trees, p. 7). Teach soft-softer-softest.", tlm: "Chart of Vegetables, Blackboard", cce: "Observation schedule, Notebook check" },
+        expand: { obj: "Practice greetings for occasions, regional fruit names, and poem recitation.", act: "Identify famous fruits of Karnataka places (Tumakuru-Jackfruit, Nanjangud-Banana, Coorg-Orange, Kolar-Mango, Raichur-Custard apple, p. 8). Match occasions and greetings (p. 9). Recite 'Tomatoes are red, beans are green' (p. 10).", tlm: "Fruit cards, Greeting strips", cce: "Pair practice & recitation check" },
+        evaluate: { obj: "Assess comprehension, vocabulary, and short paragraph writing.", act: "1) Write 4-5 sentences on why eating fruits and vegetables is healthier than chocolates/buns (p. 6). 2) Match occasions with greetings. 3) Colour fruits on p. 9.", tlm: "Textbook, Notebooks, Crayons", cce: "Written test, Assignment check" },
+        ws: ["Why did Kiran's mother send him to the vegetable shop?", "Match: (1) Spinach (2) Carrots (3) Pumpkin — with bright eyes, iron content, helps stay slim.", "Name the famous fruit grown in: (a) Coorg (b) Kolar (c) Nanjangud.", "Match greeting: 'It is my birthday today' / 'I got the highest marks' — with Congratulations / Many happy returns.", "Write 3 sentences on why we should eat fresh vegetables daily."]
+      },
+      {
+        id: "u1m", unit: "UNIT - 1 [POEM]", cat: "poem", title: "Water", author: "John R. Crossland (pp. 11-14)",
+        overall: ["Recite the poem with rhythm and appreciate the omnipresence of water.", "Identify water sources, rhyming words, and ways to keep water bodies clean."],
+        engage: { obj: "Connect to daily water usage and local water sources.", act: "Pre-reading (p. 11): Observe the water scene picture. Ask: From where do you get water? Name some rivers. How can we keep rivers and tanks clean?", tlm: "Textbook, Water sources chart", cce: "Oral questioning" },
+        explore: { obj: "Listen to expressive recitation and identify main ideas of each stanza.", act: "Teacher recites 'Water' aloud twice. Choral recitation by students. Explain glossary word 'cries' (shouts). Discuss main ideas of stanzas 1, 2, and 3.", tlm: "Textbook, Blackboard", cce: "Recitation checklist" },
+        explain: { obj: "Identify rhyming words and describe water sources.", act: "Find rhyming pairs: all-fall, smell-well, about-out, rain-again, eyes-cries, tears-ears. Discuss difference between sea water and pond water.", tlm: "Rhyme cards, Textbook", cce: "Oral comprehension check" },
+        expand: { obj: "Build vocabulary through matching descriptions and pictures.", act: "Match rain, well, pond, sea with their descriptions (p. 13). Connect water words (rain, well, pond, sea, tap, waterfall, tears) with pictures (p. 14).", tlm: "Textbook (pp. 13-14)", cce: "Workbook observation" },
+        evaluate: { obj: "Assess comprehension of water sources and rhyming skills.", act: "1) List 5 places where water is found in the poem. 2) Write 4 rhyming pairs from the poem. 3) Write two ways to save drinking water.", tlm: "Notebooks", cce: "Written evaluation" },
+        ws: ["What are the two properties of water mentioned in the first two lines?", "List any four sources of water mentioned in the poem.", "Write rhyming words from the poem for: (a) smell (b) rain (c) tears.", "Match: (a) Rain (b) Sea (c) Well — with salty water, underground source, from clouds."]
+      },
+      {
+        id: "u2p", unit: "UNIT - 2 [PROSE]", cat: "prose", title: "Haldi's Adventure", author: "KTBS Textbook (pp. 15-19)",
+        overall: ["Read an imaginative story with enjoyment and answer comprehension questions.", "Build word-formation skills, vowel insertion, and alphabetical ordering."],
+        engage: { obj: "Spark imagination about animals and going to school.", act: "Show the picture of Haldi and Smiley the Giraffe wearing glasses (p. 15). Ask: What would you do if a talking giraffe offered you a ride to school?", tlm: "Textbook, Giraffe picture", cce: "Oral interaction" },
+        explore: { obj: "Read aloud with expression and understand new words.", act: "Teacher reads 'Haldi's Adventure' aloud with voice modulation. Introduce glossary: stare, surprise, adventure, wonderful. Silent reading to find days of the week and what Haldi learns at school.", tlm: "Textbook, Word cards", cce: "Reading checklist" },
+        explain: { obj: "Check comprehension and practice classroom instructions.", act: "Answer comprehension questions and fill-in-the-blanks (p. 17). Guided writing: Imagine being class leader and write 5 classroom rules/instructions (p. 18).", tlm: "Blackboard, Instruction strips", cce: "Comprehension & notebook check" },
+        expand: { obj: "Develop vocabulary through word building and alphabetical order.", act: "Form smaller words from 'EDUCATION' (p. 18). Insert vowels (a,e,i,o,u) in b-t, c-p, d-g, h-s, p-n and add letters before/after a, e, t, i, h (p. 19). Arrange 14 words in alphabetical order.", tlm: "Letter flashcards, Dictionary", cce: "Pair activity observation" },
+        evaluate: { obj: "Assess comprehension, word-building, and alphabetical skills.", act: "1) How did Haldi reach school? 2) Form 6 smaller words from 'EDUCATION'. 3) Arrange in alphabetical order: dog, ant, bird, cap, eagle, gate.", tlm: "Textbook, Notebooks", cce: "Written test" },
+        ws: ["Whom did Haldi meet on her way to school and what was his name?", "How did Haldi reach the school playground quickly?", "What does Haldi learn at school?", "Make four smaller words from the word 'EDUCATION'.", "Arrange in alphabetical order: dog, ant, nest, bird, cap, eagle."]
+      },
+      {
+        id: "u2m", unit: "UNIT - 2 [POEM]", cat: "poem", title: "School is a Place of Pleasure", author: "Aman Gupta (pp. 20-22)",
+        overall: ["Recite the poem enthusiastically and value school life and teachers.", "Identify rhyming words and compare learning at school vs home."],
+        engage: { obj: "Discuss what makes school enjoyable and meaningful.", act: "Pre-reading (p. 20): Observe the school playground picture. Ask: What treasure does school give us? What do you want to become in life?", tlm: "Textbook, School picture", cce: "Oral discussion" },
+        explore: { obj: "Listen to rhythmic recitation and learn poetic expressions.", act: "Teacher recites the poem with clear rhythm. Students recite in chorus. Explain glossary: slope, fall from a slope, shine like gold, will power.", tlm: "Textbook, Blackboard", cce: "Recitation checklist" },
+        explain: { obj: "Explore rhyming pairs and the positive qualities school builds.", act: "Identify rhyming words (p. 22): pleasure-treasure, strong-wrong, bold-gold, hope-slope, power-flower. Discuss how school teaches respect, courage, and hard work.", tlm: "Rhyme cards", cce: "Oral Q&A" },
+        expand: { obj: "Compare home learning and school learning and enjoy bonus rhyme.", act: "Group discussion (p. 21): List 5 differences between learning at home and learning at school. Recite 'School is fun' rhyme (p. 22).", tlm: "Chart paper, Notebooks", cce: "Group sharing rubric" },
+        evaluate: { obj: "Assess comprehension and rhyming word skills.", act: "1) Write 3 things school gives us according to the poem. 2) Write rhyming words for pleasure, bold, strong, hope, power.", tlm: "Notebooks", cce: "Written check" },
+        ws: ["According to the poet, what treasure does school give us?", "Write rhyming words from the poem for: (a) pleasure (b) bold (c) hope (d) power.", "What does 'shine like gold' mean?", "Write two differences between learning at home and learning at school."]
+      },
+      {
+        id: "u3p", unit: "UNIT - 3 [PROSE]", cat: "prose", title: "Nine Little Birds", author: "KTBS Textbook (pp. 23-30)",
+        overall: ["Read a lively animal story featuring bird sounds and descriptions.", "Convert past tense verbs to present tense and describe family members."],
+        engage: { obj: "Warm up with finger-play family rhyme.", act: "Pre-reading (p. 23): Spread left palm and recite 'The Family' rhyme pointing to each finger. Show pictures of Mother Hen and Father Hen.", tlm: "Textbook, Bird pictures", cce: "Participation checklist" },
+        explore: { obj: "Read aloud with bird sounds and learn rich action vocabulary.", act: "Teacher reads the story dramatically using bird sounds (quack, caw, gutter-goon, kukrooh-kurh). Glossary: crack, emerge, utter, idly, yelp, duck, gleefully, weird, sigh.", tlm: "Textbook, Sound cards", cce: "Listening & reading checklist" },
+        explain: { obj: "Match bird descriptions and teach Past-to-Present tense verbs.", act: "Answer comprehension Qs & match birds with descriptions (p. 27): crow, kingfisher, owl, parrot. Grammar: Convert 11 past tense verbs (became, left, flew, spread, heard, went, thought, etc.) to present tense (p. 28).", tlm: "Verb chart, Blackboard", cce: "Grammar check" },
+        expand: { obj: "Practice jumbled words, reading-to-draw, and speaking about family.", act: "Unscramble jumbled words (family, picture, house, children, parents, p. 28). Read passage on p. 29 and draw the house scene. Pair speaking: Talk about family members (p. 30).", tlm: "Drawing space (p. 29), Notebooks", cce: "Drawing & speaking rubric" },
+        evaluate: { obj: "Assess comprehension, verb tenses, and oral narration.", act: "1) How was the nest broken and what did Father Hen do? 2) Write present tense of: flew, went, sat, thought, began. 3) Narrate the story in 5 lines.", tlm: "Textbook, Notebooks", cce: "Written test" },
+        ws: ["How many eggs did Mother Hen lay and how were eight of them broken?", "List any five birds whose babies hatched from the nest.", "Match: (1) Big round eyes (2) Green with red beak (3) Blue with long beak — with Parrot, Owl, Kingfisher.", "Write the present tense of: (a) became (b) flew (c) went (d) thought.", "Unscramble: alfimy, shoue, rapsent."]
+      },
+      {
+        id: "u3m", unit: "UNIT - 3 [POEM]", cat: "poem", title: "Family First", author: "Bonnie B Long (pp. 31-33)",
+        overall: ["Recite the poem expressively and value family bonds and support.", "Identify rhyming words and recite the companion rhyme 'Whom do I love most?'."],
+        engage: { obj: "Discuss the difference between blood relatives and friends.", act: "Pre-reading (p. 31): Tick blood relatives (family members vs friends). Discuss the Indian ideal 'Vasudhaiva Kutumbakam' (the world is one family).", tlm: "Textbook, Family portrait", cce: "Oral discussion" },
+        explore: { obj: "Recite the poem aloud and understand key vocabulary.", act: "Teacher recites 'Family First' with warmth. Students recite in pairs and then together. Glossary: fun, comfort, hold on to.", tlm: "Textbook", cce: "Recitation checklist" },
+        explain: { obj: "Discuss why family stands by us forever and list rhyming pairs.", act: "Compare the role of friends and family in the poem. List rhyming words (p. 33): go-know, mistake-make, this-miss, you-too, lost-cost.", tlm: "Blackboard, Rhyme strips", cce: "Comprehension check" },
+        expand: { obj: "Practice expressive recitation and personal reflection.", act: "Recite 'Whom do I love most?' (p. 33) with gestures. Students share one thing they love most about their family.", tlm: "Textbook", cce: "Oral presentation observation" },
+        evaluate: { obj: "Evaluate rhyming skills and value understanding.", act: "1) Why does the poet say 'Family is first'? 2) Write four rhyming pairs from the poem. 3) Write 3 sentences about your family.", tlm: "Notebooks", cce: "Written check" },
+        ws: ["According to the poem, who stays with us forever?", "Write the meaning of 'comfort' and 'hold on to'.", "Write four pairs of rhyming words from the poem.", "Write three sentences about why you love your family."]
+      },
+      {
+        id: "u4p", unit: "UNIT - 4 [PROSE]", cat: "prose", title: "Charity", author: "KTBS Textbook (pp. 34-41)",
+        overall: ["Understand the true meaning of selfless charity through Krishna, Arjuna, and Karna.", "Learn homonyms (words with two meanings), compound nouns, and cloze reading."],
+        engage: { obj: "Stimulate questioning skills using picture prompts.", act: "Pre-reading (p. 34): Ask about famous mythological stories and characters. Observe the picture and ask questions about Karna's generosity.", tlm: "Textbook, Story picture", cce: "Oral questioning" },
+        explore: { obj: "Read aloud with dialogue expression and learn rich vocabulary.", act: "Teacher reads 'Charity' aloud. Introduce glossary: pester, snap, proclaim, huffed, shovel, diminish, exhausted, ego, dumbfounded, fortune, enlightenment, regret.", tlm: "Textbook, Dictionary", cce: "Reading checklist" },
+        explain: { obj: "Sequence story events and teach words with multiple meanings.", act: "Answer comprehension Qs (pp. 37-38) and rearrange 8 jumbled events in order (pp. 38-39). Vocabulary: Study Mahesh-Kiran conversation for dual-meaning words (drop, post, close, p. 39-40).", tlm: "Sentence strips, Blackboard", cce: "Sequencing & vocabulary check" },
+        expand: { obj: "Practice framing sentences, cloze passages, and compound words.", act: "Frame sentences showing two meanings of: step, right, walk, book, nail (p. 40). Complete Rahman's cloze passage (p. 40-41). Match compound words (Head Master, Attendance Register, Class Room, Home Work, Play Ground, p. 41).", tlm: "Compound word cards, Notebooks", cce: "Workbook observation" },
+        evaluate: { obj: "Assess comprehension, sequencing, and vocabulary usage.", act: "1) How was Karna's charity different from Arjuna's? 2) Write two sentences using 'book' or 'right' in two meanings. 3) Form 4 compound words from p. 41.", tlm: "Textbook, Notebooks", cce: "Written test" },
+        ws: ["Why was Arjuna pestering Lord Krishna?", "What happened when Krishna snapped his fingers?", "How did Karna donate the two mountains of gold?", "Use the word 'drop' in two sentences with different meanings.", "Match to make compound words: Head, Class, Home, Attendance — with Room, Work, Master, Register."]
+      },
+      {
+        id: "u4m", unit: "UNIT - 4 [POEM]", cat: "poem", title: "A Little World", author: "KTBS Textbook (pp. 42-44)",
+        overall: ["Recite the poem with empathy and compassion for the blind, deaf, and orphans.", "Identify similes ('bright as the sun', 'clear as the rain', 'soft as the snow')."],
+        engage: { obj: "Build empathy for people who face physical or social challenges.", act: "Ask: How can we bring happiness to someone who cannot see, hear, or has no parents? Introduce 'A Little World'.", tlm: "Textbook, Blackboard", cce: "Oral discussion" },
+        explore: { obj: "Recite aloud with feeling and learn glossary words.", act: "Teacher recites the 4 stanzas expressively. Students recite in chorus. Explain glossary: echoes, orphan, blind, deaf, warmth.", tlm: "Textbook, Word cards", cce: "Recitation checklist" },
+        explain: { obj: "Comprehend the poet's wish and similes.", act: "Discuss what the poet wants to be for the blind (light), deaf (voice), and orphan (mother), and the final prayer to God for strength.", tlm: "Blackboard", cce: "Oral comprehension check" },
+        expand: { obj: "Practice memorization and playful tongue-twister rhymes.", act: "Complete the last stanza from memory (p. 43). Recite 'A sailor went to sea' and 'Two and twenty robbers' (p. 44) for pronunciation fun.", tlm: "Textbook", cce: "Memory & fluency observation" },
+        evaluate: { obj: "Assess poem comprehension and value reflection.", act: "Answer the 4 comprehension questions on p. 43 neatly in notebooks.", tlm: "Notebooks", cce: "Written check" },
+        ws: ["Why does the poet want to be the light to the blind?", "What does the poet want to be to the deaf?", "How does the poet want to help the orphan?", "What is the poet's prayer to God in the last stanza?"]
+      },
+      {
+        id: "u5p", unit: "UNIT - 5 [PROSE]", cat: "prose", title: "The Story of the Coconut", author: "KTBS Textbook (pp. 45-51)",
+        overall: ["Read an informative text about the multi-purpose coconut tree.", "Use singular/plural forms, helping verbs (is/are, was/were), 'ee/ea' spellings, and punctuation."],
+        engage: { obj: "Connect to daily food ingredients and local trees.", act: "Pre-reading (p. 45): Pairs ask each other about breakfast and ingredients. Ask: Which tree gives food, sweet water, roof, and fuel? Introduce 'The Story of the Coconut'.", tlm: "Textbook, Coconut/coir sample, Picture", cce: "Pair interaction checklist" },
+        explore: { obj: "Read aloud and understand scientific/everyday vocabulary.", act: "Teacher reads paragraphs 1-6 aloud. Introduce glossary: kernel, margarine, cosmetic, detergent, sprout. Answer margin Qs (height 25m, kernel, single seed).", tlm: "Textbook, Dictionary", cce: "Reading checklist" },
+        explain: { obj: "Summarize uses of coconut and teach Plurals & Helping Verbs.", act: "List 5 uses of coconut oil and uses of coir fibre (pp. 47-48). Vocabulary: Crossword clues (kernel, copra, margarine, single, sprout) & Plurals (nuts, brushes, wives, lives, knives, p. 48). Grammar: is/are and was/were (p. 49).", tlm: "Grammar chart, Blackboard", cce: "Grammar & workbook check" },
+        expand: { obj: "Expand vocabulary webs, spelling ('ee'/'ea'), and punctuation.", act: "Complete word-association webs for 'classroom' and 'furniture' (p. 50). Fill 'ee' or 'ea' in teach, sleep, please, tease, beneath, breeze (p. 50). Punctuate 5 sentences (p. 51).", tlm: "Word web charts, Spelling cards", cce: "Pair work observation" },
+        evaluate: { obj: "Assess comprehension, paragraph writing, and grammar accuracy.", act: "1) Draw half a coconut shell and label parts. 2) Write 5-6 sentences on uses of the coconut tree. 3) Complete is/are, was/were & punctuation exercises.", tlm: "Notebooks, Drawing sheet", cce: "Written test & assignment" },
+        ws: ["What is the normal height of a coconut tree and what is a kernel?", "List any four products made using coconut oil or fibre.", "Write the plural forms of: (a) brush (b) knife (c) life (d) tree.", "Fill in with is/are/was/were: (a) Children ___ playing. (b) My toys ___ broken yesterday.", "Complete with 'ee' or 'ea': t__ch, sl__p, pl__se, br__ze."]
+      },
+      {
+        id: "u5m", unit: "UNIT - 5 [POEM]", cat: "poem", title: "The Zoo", author: "KTBS Textbook (pp. 52-54)",
+        overall: ["Recite a fun animal poem and describe zoo animals.", "Use modal verbs 'can' and 'cannot' accurately to express animal abilities."],
+        engage: { obj: "Recall experiences of visiting a zoo or seeing animals.", act: "Ask: Have you visited a zoo? Which animals did you see? Which is your favourite animal and why?", tlm: "Textbook, Zoo animal pictures", cce: "Oral interaction" },
+        explore: { obj: "Recite the poem aloud and learn describing words.", act: "Teacher recites 'The Zoo' with expressive voice. Students repeat in chorus. Explain glossary: fuzzy, awful, cage, rage, silly.", tlm: "Textbook, Flashcards", cce: "Recitation checklist" },
+        explain: { obj: "Check comprehension and identify rhyming words.", act: "Answer the 5 comprehension questions (p. 53). List rhyming words: bear-hair, cage-rage, giraffe-laugh, zoo-you.", tlm: "Blackboard", cce: "Oral Q&A" },
+        expand: { obj: "Identify hidden animals in picture and practice 'can/cannot'.", act: "Identify cat, goat, dog, ox, donkey in the picture (p. 53). Complete 'can/cannot' sentences (Horses cannot fly, Fish can swim, etc., p. 54).", tlm: "Textbook (pp. 53-54)", cce: "Workbook check" },
+        evaluate: { obj: "Assess comprehension, rhymes, and modal verb usage.", act: "1) Why do you think the lion was in a rage? 2) Write 3 rhyming pairs from the poem. 3) Fill 5 blanks using can/cannot.", tlm: "Notebooks", cce: "Written check" },
+        ws: ["Name the four animals the poet saw in the zoo.", "Why do you think the lion was in an awful rage?", "Write three pairs of rhyming words from the poem.", "Fill in using can/cannot: (a) Horses ___ fly. (b) Monkeys ___ climb up trees."]
+      },
+      {
+        id: "u6p", unit: "UNIT - 6 [PROSE]", cat: "prose", title: "Monkeys and the Bell", author: "KTBS Textbook (pp. 55-63)",
+        overall: ["Read a clever folk tale and learn not to believe in superstitions.", "Use substitution tables, opposites, conjunctions, and dictionary skills."],
+        engage: { obj: "Recall familiar monkey stories and identify action words.", act: "Pre-reading (p. 55): Read the cap-seller and monkeys story and underline action words. Introduce 'Monkeys and the Bell'.", tlm: "Textbook, Action word cards", cce: "Oral & underline check" },
+        explore: { obj: "Read aloud in sections and answer margin comprehension questions.", act: "Teacher reads paragraphs 1-6 aloud. Introduce glossary: robber, jingle, melodious, evil spirit, bravely, grabbed. Silent reading to find how Meena outsmarted the monkeys.", tlm: "Textbook, Blackboard", cce: "Reading checklist" },
+        explain: { obj: "Discuss Meena's intelligence and teach Opposites & Conjunctions.", act: "Answer comprehension Qs (p. 59). Practice sentence framing & substitution tables (pp. 59-60). Teach Opposites (ugly-beautiful, bad-good, hate-love, dishonest-honest, p. 60) and Conjunctions (and, but, so, neither...nor, not only...but also, p. 60-61).", tlm: "Conjunction & Opposite charts", cce: "Grammar check" },
+        expand: { obj: "Practice emotion vocabulary, picture-story reading, and dictionary skills.", act: "Match 6 facial expressions (happy, sad, afraid, crying, laughing, angry, p. 61). Fill picture-story of Gopal & Neena (pp. 61-62). Complete dictionary quiz on rainbow, write, eleven, thorough, cauliflower (p. 63).", tlm: "Emotion cards, Dictionary", cce: "Pair activity observation" },
+        evaluate: { obj: "Evaluate comprehension, opposites, and conjunctions.", act: "1) Why did villagers start leaving the village? 2) How did Meena recover the bell? 3) Write opposites for fast, near, clean, few. 4) Fill blanks with conjunctions.", tlm: "Textbook, Notebooks", cce: "Written test" },
+        ws: ["Why did the villagers think there was an evil spirit in the forest?", "How did brave Meena get the bell back from the monkeys?", "Write the opposites of: (a) ugly (b) dishonest (c) fast (d) near.", "Fill in using and/but/so: Seetha ___ Geetha are friends. Seetha is tall ___ Geetha is short.", "Which word comes first in a dictionary: rainbow, write, eleven, cauliflower?"]
+      },
+      {
+        id: "u6m", unit: "UNIT - 6 [POEM]", cat: "poem", title: "Cocks Crow", author: "Traditional Rhyme (pp. 64-66)",
+        overall: ["Recite the proverb-based poem and learn the habit of rising early.", "Match animal cries, learn proverbs, and match rhyming picture-words."],
+        engage: { obj: "Talk about morning routines and waking up early.", act: "Ask: When do you wake up? Which bird crows in the morning? What is the female of a cock called?", tlm: "Textbook, Morning scene picture", cce: "Oral questioning" },
+        explore: { obj: "Recite the poem aloud and learn glossary words.", act: "Teacher recites 'Cocks Crow' with clear rhythm. Students recite in pairs and class. Glossary: crow, lies, wealthy.", tlm: "Textbook", cce: "Recitation checklist" },
+        explain: { obj: "Understand the proverb and match animal cries.", act: "Complete sentences from the poem (p. 65). Match creatures with cries: cow-moos, cat-mews, dog-barks, donkey-brays, child-speaks, cock-crows (p. 65).", tlm: "Animal sound chart", cce: "Matching check" },
+        expand: { obj: "Collect proverbs and match rhyming picture words.", act: "Write two more English proverbs (p. 65). Match mat, tall, dish, far, fan with rhyming pictures (p. 66).", tlm: "Picture cards, Notebooks", cce: "Pair work observation" },
+        evaluate: { obj: "Assess poem completion, animal cries, and rhyming skills.", act: "1) Complete: 'Early to bed and early to rise is ___.' 2) Match 5 animals with their cries. 3) Write one proverb you know.", tlm: "Notebooks", cce: "Written check" },
+        ws: ["Complete the line: 'Early to bed and early to rise is the way to be ___.'", "Match the cries: (a) cow (b) cat (c) donkey (d) cock — brays, moos, crows, mews.", "Write any one proverb other than the one in the poem.", "Write a rhyming word each for: mat, dish, fan."]
+      },
+      {
+        id: "u7p", unit: "UNIT - 7 [PROSE]", cat: "prose", title: "The Golden Deer (P.T. Usha)", author: "KTBS Textbook (pp. 67-75)",
+        overall: ["Read the inspiring biography of athlete P.T. Usha and sequence her milestones.", "Use present continuous tense tables, reflexive pronouns (-self/-selves), and pronunciation pairs."],
+        engage: { obj: "Discuss favourite sports and Indian athletes.", act: "Pre-reading (p. 67): Pairs discuss their favourite game and how it is played. Show P.T. Usha's photograph with medals (p. 69) and introduce 'The Golden Deer'.", tlm: "Textbook, P.T. Usha photo", cce: "Oral interaction" },
+        explore: { obj: "Read aloud and comprehend biographical facts and glossary.", act: "Teacher reads paragraphs 1-5 aloud. Introduce glossary: sank on the ground, athlete, perseverance. Answer margin Qs (Kerala 1964, O.P. Nambiar, 1982 Asiad, 101 medals).", tlm: "Textbook, Blackboard", cce: "Reading checklist" },
+        explain: { obj: "Sequence biography events and teach Present Continuous & Reflexive Pronouns.", act: "Rearrange 5 sentences about P.T. Usha & match events with years (1964, 1976, 1982, 1984, pp. 70-71). Grammar: Substitution tables using 'is/are + -ing' (pp. 71-72) & Reflexive Pronouns (herself, themselves, himself, ourselves, p. 72).", tlm: "Tense & Pronoun charts", cce: "Grammar check" },
+        expand: { obj: "Build synonyms/antonyms, pronunciation contrast, and goal writing.", act: "Circle synonyms and underline antonyms (DIFFICULT, BROAD, WET, UNHAPPY) and complete Ravi's paragraph (p. 73). Practice minimal pairs: rich-reach, sit-seat, pull-pool, steal-still, fit-feet (p. 74). Write 4-5 lines on personal goal.", tlm: "Word cards, Pronunciation chart", cce: "Pronunciation & writing rubric" },
+        evaluate: { obj: "Assess comprehension, grammar, and project work.", act: "1) How did P.T. Usha become India's fastest runner? 2) Fill reflexive pronouns. 3) Project (pp. 74-75): Album of 5 Indian sportswomen & list of 5 games with number of players.", tlm: "Textbook, Project sheets", cce: "Written test & project rubric" },
+        ws: ["Who trained P.T. Usha and why was she called the 'Golden Deer'?", "Match years: (1) 1964 (2) 1976 (3) 1982 (4) 1984 — Born, Joined school, Asian Games, Los Angeles Olympics.", "Fill in reflexive pronouns: (a) She washes her clothes ___. (b) We do homework ___.", "Write a synonym and an antonym for: DIFFICULT, BROAD.", "Write 4 sentences about what you want to become when you grow up."]
+      },
+      {
+        id: "u7m", unit: "UNIT - 7 [POEM]", cat: "poem", title: "Run", author: "Mary Daunt (pp. 76-79)",
+        overall: ["Recite the action poem energetically and enjoy outdoor physical activity.", "Learn prepositional opposites and action verbs (running, skipping, jumping, walking)."],
+        engage: { obj: "Energize the class with a movement song.", act: "Pre-reading (p. 76): Sing and perform the 'Boogie-woogie' action song with hands and legs. Introduce Mary Daunt's poem 'Run'.", tlm: "Textbook, Open space", cce: "Action participation checklist" },
+        explore: { obj: "Recite the poem with lively tempo and learn glossary words.", act: "Teacher recites 'Run' aloud. Students recite with running gestures. Explain glossary: country (village), breeze, lane, merry, meadow.", tlm: "Textbook, Word cards", cce: "Recitation checklist" },
+        explain: { obj: "Comprehend the message and learn opposites.", act: "Answer comprehension Qs (p. 78). Write opposites for: out-in, up-down, from-to, above-below (p. 78).", tlm: "Opposite cards, Blackboard", cce: "Oral & written check" },
+        expand: { obj: "Conduct TPR (Total Physical Response) action instructions.", act: "Student leader gives movement instructions (shoulders up/down, feet forward/backward, hands left/right, palms in/out, p. 78). Match pictures with skipping, running, jumping, walking (p. 79). Recite 'Boys and girls come out to play'.", tlm: "Action pictures (p. 79)", cce: "Activity observation" },
+        evaluate: { obj: "Assess comprehension, opposites, and games vocabulary.", act: "1) What does the poem tell us to do all through the day? 2) Write opposites of out, up, above. 3) Name two games where you have to run.", tlm: "Notebooks", cce: "Written evaluation" },
+        ws: ["Where does the poet want us to run away from and run to?", "What does the poet ask us to do all through the day?", "Write opposites for: (a) out (b) up (c) above (d) from.", "Name any two games that require running."]
+      },
+      {
+        id: "u8p", unit: "UNIT - 8 [PROSE]", cat: "prose", title: "Buying Books", author: "KTBS Textbook (pp. 80-88)",
+        overall: ["Develop a love for reading and learn how books are categorized in shops and libraries.", "Form compound words, use conjunctions (and, or, but), and make a bookmark."],
+        engage: { obj: "Build compound words and talk about bookshops.", act: "Pre-reading (p. 80): Form compound words from two boxes (water-bottle, playground, classroom, textbook, dustbin, tubelight, shopkeeper, bookshelf). Show the bookshop picture.", tlm: "Textbook, Compound word cards", cce: "Matching checklist" },
+        explore: { obj: "Read aloud and understand story sequence and glossary.", act: "Teacher reads Sushma and Ajay's visit to the bookshop aloud. Glossary: wonder, bid good-bye, exclaimed, relax, shelf. Silent reading to find which books Sushma and Ajay chose.", tlm: "Textbook, Library books", cce: "Reading checklist" },
+        explain: { obj: "Sequence story events and classify book types.", act: "Answer comprehension Qs (p. 83) and rearrange 7 sentences in order (p. 84). Label bookshelf rows (Reference book, Story book, Magazine, Text book, p. 85). Teach conjunctions 'and, or, but' via Rashmi-Librarian dialogue (p. 87).", tlm: "Sample books, Conjunction chart", cce: "Sequencing & grammar check" },
+        expand: { obj: "Practice guided writing, word puzzle, and hands-on bookmark craft.", act: "Complete 'Visit to a book shop' sentences (p. 86). Solve 'I READ BOOKS' clue puzzle (pp. 86-87). Craft Activity (p. 88): Design and punch a colourful ribbon bookmark.", tlm: "Thick card, Crayons, Ribbon, Scissors", cce: "Craft & puzzle rubric" },
+        evaluate: { obj: "Assess comprehension, conjunctions, and reading habits.", act: "1) How did the shopkeeper help Sushma and Ajay? 2) Complete 4 blanks with and, or, but. 3) List books you have at home/library (p. 86).", tlm: "Textbook, Notebooks", cce: "Written test" },
+        ws: ["How did the man in the bookshop help Sushma and Ajay?", "Which books did Sushma and Ajay finally buy?", "Form four compound words: water, play, dust, shop + bin, keeper, bottle, ground.", "Fill in with and/or/but: 'Would you like a story book ___ a book of poems? I like both, ___ now I want Panchatantra.'"]
+      },
+      {
+        id: "u8m", unit: "UNIT - 8 [POEM]", cat: "poem", title: "Friends", author: "KTBS Textbook (pp. 89-93)",
+        overall: ["Recite the poem warmly and appreciate the value of true friendship.", "Distinguish affection from selfishness, create picture dialogues, and write rhymes."],
+        engage: { obj: "Discuss qualities of a good friend.", act: "Ask: How does a good friend help when you are sad? Introduce the poem 'Friends' (p. 89).", tlm: "Textbook, Friendship pictures", cce: "Oral interaction" },
+        explore: { obj: "Recite aloud and understand poetic vocabulary.", act: "Teacher recites 'Friends' aloud. Students recite in pairs and chorus. Explain glossary: spirits, treasure, grace.", tlm: "Textbook", cce: "Recitation checklist" },
+        explain: { obj: "Explore friendship values and identify rhyming words.", act: "Discuss how friends lift our spirits and make the world happier. Write rhyming pairs (lift-gift, grace-place) and add 3 own pairs (p. 93). Label pictures as 'Affection' or 'Selfishness' (pp. 90-91).", tlm: "Textbook pictures (pp. 90-91)", cce: "Value & rhyme check" },
+        expand: { obj: "Develop dialogue writing and enjoy poem on books as friends.", act: "Observe the bicycle/bandage picture (p. 92) and complete the dialogue between Rina, Shamu, and Mother. Read and enjoy 'What Is A Book?' by Lora Dunetz (p. 93).", tlm: "Textbook (pp. 92-93)", cce: "Dialogue writing rubric" },
+        evaluate: { obj: "Assess comprehension and short paragraph writing.", act: "1) How do friends help when we are sad? 2) Write 4-5 sentences on 'How to be a good friend' (p. 89).", tlm: "Notebooks", cce: "Written evaluation" },
+        ws: ["How do friends help us when our spirits need a lift?", "Write the meaning of 'treasure' and 'grace'.", "Write two rhyming pairs from the poem and add two of your own.", "Write four sentences on how to be a good friend."]
+      },
+      {
+        id: "u9p", unit: "UNIT - 9 [PROSE]", cat: "prose", title: "Just a Second", author: "KTBS Textbook (pp. 94-104)",
+        overall: ["Understand the value of every second through an allegorical tale of Father Time and his seven sons.", "Tell time in English and use prepositions of place and time accurately."],
+        engage: { obj: "Build speaking confidence through JAM (Just-A-Minute).", act: "Pre-reading (p. 94): Conduct a 1-minute JAM speech on familiar topics (my hobby, school, punctuality, favourite game). Introduce Father Time and his 7 sons.", tlm: "Textbook, Clock model", cce: "Speaking observation" },
+        explore: { obj: "Read aloud and track time-unit conversions in the story.", act: "Teacher reads 'Just a Second' aloud. Introduce glossary: nugget, standstill. Students list metals (iron, steel, bronze, silver, gold, diamond) and coin counts for each son.", tlm: "Textbook, Time-conversion chart", cce: "Reading checklist" },
+        explain: { obj: "Reinforce time units, telling time, and Prepositions.", act: "Answer comprehension Qs (p. 99) & match time units (60 seconds = 1 minute, etc., p. 100). Word grid of TIME family (p. 101). Teach telling time (quarter past, half past, quarter to, pp. 101-102). Teach Prepositions of place (park picture, pp. 102-103) and time (at/on/for/from, pp. 103-104).", tlm: "Clock flashcards, Park picture (p. 102)", cce: "Grammar & time-telling check" },
+        expand: { obj: "Practice speaking about holiday routines and time management.", act: "Pair discussion (p. 104): Talk about how you spend summer holidays (travel, homework, helping elders, play, hobbies). Write 4-5 sentences on the best way to use time (p. 100).", tlm: "Notebooks", cce: "Pair speaking & writing rubric" },
+        evaluate: { obj: "Assess comprehension, time units, and prepositions.", act: "1) Why did Second go into hiding and what happened? 2) Match time units (p. 100). 3) Fill prepositions (pp. 103-104).", tlm: "Textbook, Notebooks", cce: "Written test" },
+        ws: ["Name the seven sons of Father Time beginning from the eldest.", "Why did Second go into hiding and what happened when he hid?", "Complete: (a) Sixty minutes make an ___. (b) Twenty-four hours make a ___.", "Fill in prepositions (on, in, at, for): (a) The butterfly is ___ the flower. (b) I have breakfast ___ seven."]
+      },
+      {
+        id: "u9m", unit: "UNIT - 9 [POEM]", cat: "poem", title: "The Clock", author: "Anonymous (pp. 105-107)",
+        overall: ["Recite the poem with rhythm and imbibe the value of punctuality.", "Create a personal daily timetable and match digital times with words."],
+        engage: { obj: "Warm up with a classic clapping rhyme.", act: "Pre-reading (p. 105): Clap hands and recite 'Hickory Dickory Dock'. Ask: What do the two hands of a clock show?", tlm: "Textbook, Wall clock", cce: "Participation checklist" },
+        explore: { obj: "Recite 'The Clock' aloud and identify its moral.", act: "Teacher recites the 4 stanzas clearly. Students recite together. Identify the key quality taught by the clock: Punctuality (p. 106).", tlm: "Textbook", cce: "Recitation checklist" },
+        explain: { obj: "Discuss benefits of a clock/watch and rhyming patterns.", act: "List 5 benefits of having a clock/watch (p. 106). Point out rhyming words: stands-hands, bright-right, later-better.", tlm: "Blackboard", cce: "Oral discussion" },
+        expand: { obj: "Practice writing daily schedules and reading clock expressions.", act: "Prepare a personal daily timetable (p. 107). Match Leela's weekday digital times (06.30, 07.50, 08.10, 08.45, 09.00, 09.15, 11.10, 03.35) with worded activities (p. 107).", tlm: "Timetable template, Clock cards", cce: "Workbook check" },
+        evaluate: { obj: "Assess time matching and punctuality reflection.", act: "1) Write 3 benefits of a clock. 2) Match 5 times with activities (p. 107). 3) Write your morning timetable from 6.30 to 9.00.", tlm: "Notebooks", cce: "Written evaluation" },
+        ws: ["What do the two hands of the clock show?", "Which quality do we learn from the clock: Punctuality, Kindness, or Courage?", "Write three benefits of having a clock or watch.", "Match: (a) 06.30 (b) 08.45 (c) 09.15 — with quarter past nine, half past six, quarter to nine."]
+      },
+      {
+        id: "sr1", unit: "SUPPLEMENTARY READING - 1", cat: "supp", title: "The Bell of Justice", author: "KTBS Textbook (pp. 108-110)",
+        overall: ["Read a historical story about Emperor Jahangir's commitment to equal justice.", "Reflect on accountability and fairness ('All are equal in the eyes of the law')."],
+        engage: { obj: "Discuss fairness and justice in daily life.", act: "Ask: What does 'justice' mean? Should rules be the same for rich and poor alike? Introduce Emperor Jahangir's 'Bell of Justice'.", tlm: "Textbook, Blackboard", cce: "Oral questioning" },
+        explore: { obj: "Read aloud and silently to follow the dramatic courtroom event.", act: "Teacher reads the story aloud with expression. Students read silently to note why the washer-woman rang the bell and how Jahangir discovered the culprit.", tlm: "Textbook", cce: "Reading checklist" },
+        explain: { obj: "Analyze Jahangir's bold decision and moral lesson.", act: "Discuss why Jahangir handed the dagger to the washer-woman, why she refused, and how he granted her a pension while warning Queen Noor Jahan.", tlm: "Blackboard", cce: "Comprehension discussion" },
+        expand: { obj: "Connect the historical incident to modern-day law and equality.", act: "Group discussion on Q5 (p. 110): Can similar incidents happen today? How do courts protect equality before the law?", tlm: "Notebooks", cce: "Discussion observation" },
+        evaluate: { obj: "Assess reading comprehension through textbook questions.", act: "Answer the 5 comprehension questions on p. 110 in one or two sentences each.", tlm: "Textbook, Notebooks", cce: "Written check" },
+        ws: ["Why did Emperor Jahangir hang a bell at the palace entrance?", "How did the emperor know the arrow belonged to the palace?", "Why did Jahangir hand his dagger to the washer-woman?", "What lesson about the law does this story teach us?"]
+      },
+      {
+        id: "sr2", unit: "SUPPLEMENTARY READING - 2", cat: "supp", title: "Miriam and Moses", author: "KTBS Textbook (pp. 111-112)",
+        overall: ["Read a classic narrative about quick thinking, courage, and family love.", "Comprehend how Miriam's cleverness saved baby Moses."],
+        engage: { obj: "Activate prior knowledge of stories about saving a newborn child.", act: "Ask: Do you know any story where a baby was saved from a cruel king's order? Introduce 'Miriam and Moses'.", tlm: "Textbook", cce: "Oral discussion" },
+        explore: { obj: "Read the story aloud and silently for key events.", act: "Teacher reads the story clearly. Students read silently to trace how Moses was hidden in a basket, found by the princess, and nursed by his own mother.", tlm: "Textbook, Blackboard", cce: "Reading checklist" },
+        explain: { obj: "Discuss Miriam's presence of mind and Moses' later leadership.", act: "Explain why Pharaoh feared the Hebrews, how Miriam cleverly offered her own mother as nurse, and how Moses later led the Israelites to Canaan.", tlm: "Story sequence strips", cce: "Oral Q&A" },
+        expand: { obj: "Compare with Indian stories of similar themes.", act: "Pair sharing (Q4, p. 112): Share any similar story (e.g., Baby Krishna saved from Kamsa) with a friend.", tlm: "Notebooks", cce: "Speaking observation" },
+        evaluate: { obj: "Check comprehension using textbook questions.", act: "Answer the 4 questions on p. 112 in notebooks.", tlm: "Textbook, Notebooks", cce: "Written check" },
+        ws: ["What cruel order did the Pharaoh of Egypt give?", "How did Miriam's mother try to save her baby boy?", "How did Miriam cleverly help her mother stay with baby Moses?", "Who did Moses grow up to become?"]
+      },
+      {
+        id: "sr3", unit: "SUPPLEMENTARY READING - 3", cat: "supp", title: "Angulimala", author: "KTBS Textbook (pp. 113-114)",
+        overall: ["Read a famous Buddhist story on overcoming anger and cruelty through love and calmness.", "Appreciate non-violence and inner transformation."],
+        engage: { obj: "Discuss how kindness can change an angry person.", act: "Ask: Can love and calmness conquer fear and anger better than weapons? Introduce the story of Lord Buddha and Angulimala.", tlm: "Textbook, Blackboard", cce: "Oral questioning" },
+        explore: { obj: "Read aloud with calm vs dramatic tones and silent reading.", act: "Teacher reads the encounter between the frightened villagers, Lord Buddha, and Angulimala. Students read silently to note how Buddha met Angulimala.", tlm: "Textbook", cce: "Reading checklist" },
+        explain: { obj: "Analyze the transformation of Angulimala.", act: "Discuss why people feared Angulimala, why he couldn't overtake the calmly walking Buddha, and how the light of love in Buddha's eyes changed him.", tlm: "Textbook", cce: "Oral comprehension check" },
+        expand: { obj: "Encourage storytelling on values of peace and compassion.", act: "Pair activity (Q4, p. 114): Narrate another short story of Lord Buddha to your partner.", tlm: "Library storybooks", cce: "Storytelling observation" },
+        evaluate: { obj: "Assess comprehension with textbook questions.", act: "Answer the 4 questions on p. 114 in one or two sentences each.", tlm: "Textbook, Notebooks", cce: "Written evaluation" },
+        ws: ["Why were the men in the crowd near Shravasthi worried?", "Why was the cruel robber called 'Angulimala'?", "How did Lord Buddha walk past Angulimala's cave?", "What transformed Angulimala into a follower of Lord Buddha?"]
+      },
+      {
+        id: "sr4", unit: "SUPPLEMENTARY READING - 4", cat: "supp", title: "Clever Ki-Ki", author: "KTBS Textbook (pp. 115-116)",
+        overall: ["Enjoy a humorous animal story set in the South American rainforest.", "Appreciate kindness to birds/animals and smart problem-solving."],
+        engage: { obj: "Discuss talking birds and pets.", act: "Ask: Have you seen a parrot or macaw that can speak? What words do pet birds learn? Introduce 'Clever Ki-Ki'.", tlm: "Textbook, Macaw picture", cce: "Oral discussion" },
+        explore: { obj: "Read aloud with lively character voices.", act: "Teacher reads the story of Mayta, Capac, and Ki-Ki the blue-and-yellow Macaw. Students read silently to find what phrase Ki-Ki learned and how he rescued Capac.", tlm: "Textbook", cce: "Reading checklist" },
+        explain: { obj: "Discuss jealousy, forgiveness, and the humorous ending.", act: "Explain why Capac was jealous, how Ki-Ki found Capac with a sprained ankle before dark, and why everyone laughed when Ki-Ki sat on Capac's head saying 'Here's a nut!'", tlm: "Blackboard", cce: "Oral Q&A" },
+        expand: { obj: "Practice short role-play of the rescue scene.", act: "In groups of 3 (Mayta, Capac, Ki-Ki), enact the rescue and apology scene.", tlm: "Textbook", cce: "Role-play observation" },
+        evaluate: { obj: "Assess comprehension through textbook questions.", act: "Answer all 4 comprehension questions on p. 116 neatly in notebooks.", tlm: "Textbook, Notebooks", cce: "Written check" },
+        ws: ["Who was Ki-Ki and what was the only phrase he could speak?", "Why was Capac jealous of Ki-Ki?", "How did the children find Capac in the jungle before dark?", "Why did everyone laugh at the end of the story?"]
+      },
+      {
+        id: "sr5", unit: "SUPPLEMENTARY READING - 5", cat: "supp", title: "The Three Fish", author: "Panchatantra (pp. 117-118)",
+        overall: ["Read a classic Panchatantra fable and compare three attitudes toward danger.", "Understand the moral 'Prevention is better than cure' and presence of mind."],
+        engage: { obj: "Compare planning ahead vs waiting for fate.", act: "Ask: If you know a storm or exam is coming tomorrow, do you prepare today or leave it to luck? Introduce 'The Three Fish'.", tlm: "Textbook, Blackboard", cce: "Oral discussion" },
+        explore: { obj: "Read aloud and silently to compare the three fish.", act: "Teacher reads the story aloud. Students read silently and note the traits of the three fish: Wise, Resourceful, and Fate-believer.", tlm: "Textbook", cce: "Reading checklist" },
+        explain: { obj: "Analyze the choices and outcomes of each fish.", act: "Make a 3-column comparison on blackboard: Wise fish (left early via canal -> safe), Resourceful fish (pretended dead -> escaped), Fate-believer (waited & panicked -> caught).", tlm: "Comparison table", cce: "Comprehension check" },
+        expand: { obj: "Discuss problem-solving in real life.", act: "Group discussion (Q3, p. 118): Can we find solutions to problems by staying calm and thinking ahead?", tlm: "Notebooks", cce: "Group observation" },
+        evaluate: { obj: "Assess comprehension and moral understanding.", act: "Answer the 4 comprehension questions on p. 118 in one or two sentences each.", tlm: "Textbook, Notebooks", cce: "Written evaluation" },
+        ws: ["How were the three fish different from one another?", "Which fish acted according to 'Prevention is better than cure'?", "How did the resourceful fish escape from the fishermen?", "What is the moral of 'The Three Fish'?"]
+      }
+    ];
+
+    var lessonWrap = root.querySelector("#sg6etlpLessons"),
+        schoolEl = root.querySelector("#sg6etlpSchool"),
+        teacherEl = root.querySelector("#sg6etlpTeacher"),
+        yearEl = root.querySelector("#sg6etlpYear"),
+        periodsEl = root.querySelector("#sg6etlpPeriods"),
+        statusEl = root.querySelector("#sg6etlpStatus"),
+        previewArea = root.querySelector("#sg6etlpPreviewArea"),
+        paperWrap = root.querySelector("#sg6etlpPaperWrap"),
+        btnGen = root.querySelector("#sg6etlpGenerate"),
+        btnPrev = root.querySelector("#sg6etlpPreview"),
+        btnPrint = root.querySelector("#sg6etlpPrint"),
+        btnAll = root.querySelector("#sg6etlpSelectAll");
+
+    var current = null, viewMode = "plan", activeCat = "all";
+
+    function badgeHtml(cat) {
+      if (cat === "prose") return '<span class="sg6etlp-badge sg6etlp-bProse">Prose</span>';
+      if (cat === "poem") return '<span class="sg6etlp-badge sg6etlp-bPoem">Poem</span>';
+      return '<span class="sg6etlp-badge sg6etlp-bSupp">Supp</span>';
+    }
+
+    lessonWrap.innerHTML = "";
+    for (var li = 0; li < LESSONS.length; li++) {
+      var item = LESSONS[li];
+      var lab = document.createElement("label");
+      lab.className = "sg6etlp-lesson";
+      lab.setAttribute("data-cat", item.cat);
+      lab.innerHTML = '<input type="checkbox" class="sg6etlp-chk" value="' + item.id + '"> <span>' + badgeHtml(item.cat) + item.title + '</span>';
+      lessonWrap.appendChild(lab);
+    }
+
+    var catBtns = root.querySelectorAll(".sg6etlp-catBtn");
+    for (var c = 0; c < catBtns.length; c++) {
+      catBtns[c].addEventListener("click", function () {
+        activeCat = this.getAttribute("data-cat");
+        for (var j = 0; j < catBtns.length; j++) { catBtns[j].classList.remove("sg6etlp-catOn"); }
+        this.classList.add("sg6etlp-catOn");
+        var items = lessonWrap.querySelectorAll(".sg6etlp-lesson");
+        for (var k = 0; k < items.length; k++) {
+          items[k].style.display = (activeCat === "all" || items[k].getAttribute("data-cat") === activeCat) ? "flex" : "none";
+        }
+      });
+    }
+
+    function syncMode(m) {
+      viewMode = m;
+      var btns = root.querySelectorAll(".sg6etlp-tabBtn, .sg6etlp-miniTab");
+      for (var i = 0; i < btns.length; i++) {
+        if (btns[i].getAttribute("data-mode") === m) { btns[i].classList.add("sg6etlp-active"); }
+        else { btns[i].classList.remove("sg6etlp-active"); }
+      }
+      if (current) render();
+    }
+
+    var mBtns = root.querySelectorAll(".sg6etlp-tabBtn, .sg6etlp-miniTab");
+    for (var m = 0; m < mBtns.length; m++) {
+      mBtns[m].addEventListener("click", function () { syncMode(this.getAttribute("data-mode")); });
+    }
+
+    function esc(v) {
+      var d = document.createElement("div");
+      d.textContent = v == null ? "" : String(v);
+      return d.innerHTML;
+    }
+
+    function msg(t, ok) {
+      statusEl.className = "sg6etlp-status " + (ok ? "sg6etlp-ok" : "sg6etlp-warn");
+      statusEl.textContent = t;
+    }
+
+    function checkedLessons() {
+      var ids = Array.prototype.slice.call(root.querySelectorAll(".sg6etlp-chk:checked")).map(function (x) { return x.value; });
+      return LESSONS.filter(function (l) { return ids.indexOf(l.id) !== -1; });
+    }
+
+    function buildStageRow(stageName, sObj, reflPrompts) {
+      var reflHtml = '<ul class="sg6etlp-reflList">';
+      for (var r = 0; r < reflPrompts.length; r++) { reflHtml += '<li>' + esc(reflPrompts[r]) + '</li>'; }
+      reflHtml += '</ul><div class="sg6etlp-reflSpace"></div>';
+      return '<tr>'
+        + '<td>' + esc(sObj.obj) + '</td>'
+        + '<td><div class="sg6etlp-stageTag">' + stageName + '</div><div>' + esc(sObj.act) + '</div></td>'
+        + '<td>' + esc(sObj.tlm) + '</td>'
+        + '<td>' + esc(sObj.cce) + '</td>'
+        + '<td class="sg6etlp-dateBox">From:<br>___/___/20__<br>To:<br>___/___/20__</td>'
+        + '<td>' + reflHtml + '</td>'
+        + '</tr>';
+    }
+
+    function render() {
+      var d = current, html = "";
+      for (var idx = 0; idx < d.lessons.length; idx++) {
+        var L = d.lessons[idx];
+        html += '<div class="sg6etlp-sheet">';
+        html += '<div class="sg6etlp-docHeader">';
+        html += '<div class="sg6etlp-school">' + esc(d.school) + '</div>';
+        html += '<div class="sg6etlp-subTitle">5E LESSON PLAN — CLASS 6 : ENGLISH (THIRD LANGUAGE)</div>';
+        html += '<div class="sg6etlp-metaGrid">';
+        html += '<div><strong>Unit / Type:</strong> ' + esc(L.unit) + '</div>';
+        html += '<div><strong>Lesson:</strong> ' + esc(L.title) + '</div>';
+        html += '<div><strong>Teacher:</strong> ' + esc(d.teacher) + '</div>';
+        html += '<div><strong>Year / Duration:</strong> ' + esc(d.year) + ' | ' + esc(d.periods) + '</div>';
+        html += '</div></div>';
+
+        html += '<div class="sg6etlp-objBox"><strong>Overall Learning Objectives (' + esc(L.author) + '):</strong><ul>';
+        for (var o = 0; o < L.overall.length; o++) { html += '<li>' + esc(L.overall[o]) + '</li>'; }
+        html += '</ul></div>';
+
+        html += '<table class="sg6etlp-table">';
+        html += '<colgroup><col style="width:16%"><col style="width:33%"><col style="width:13%"><col style="width:13%"><col style="width:10%"><col style="width:15%"></colgroup>';
+        html += '<thead><tr><th>Learning Objectives</th><th>Classroom Process (Facilitating Activities – 5E)</th><th>Materials / Resources (TLM)</th><th>CCE Tools &amp; Techniques</th><th>Date</th><th>Teacher Reflection</th></tr></thead><tbody>';
+        html += buildStageRow("1. ENGAGE", L.engage, ["How do I feel about the class?", "Am I satisfied with student response?"]);
+        html += buildStageRow("2. EXPLORE", L.explore, ["What went well in today's class?", "Did I involve all students?"]);
+        html += buildStageRow("3. EXPLAIN", L.explain, ["How many students understood the concept?", "Were learners actively involved?"]);
+        html += buildStageRow("4. EXPAND", L.expand, ["How many students read aloud / participated?", "What change would I make next time?"]);
+        html += buildStageRow("5. EVALUATION", L.evaluate, ["Were learning objectives achieved?", "How should I plan my next lesson?"]);
+        html += '</tbody></table>';
+
+        html += '<div class="sg6etlp-signRow">';
+        html += '<div class="sg6etlp-signCol"><div class="sg6etlp-signLine"></div>Date: _____ / _____ / 20____</div>';
+        html += '<div class="sg6etlp-signCol"><div class="sg6etlp-signLine"></div>Teacher\'s Signature</div>';
+        html += '<div class="sg6etlp-signCol"><div class="sg6etlp-signLine"></div>Headmaster\'s Signature &amp; Seal</div>';
+        html += '</div>';
+        html += '<div class="sg6etlp-watermark">SmartGuruji</div>';
+        html += '</div>';
+
+        if (viewMode === "plan_ws") {
+          html += '<div class="sg6etlp-sheet">';
+          html += '<div class="sg6etlp-docHeader">';
+          html += '<div class="sg6etlp-school">' + esc(d.school) + '</div>';
+          html += '<div class="sg6etlp-subTitle">STUDENT EVALUATION / PRACTICE WORKSHEET — CLASS 6 ENGLISH (TL)</div>';
+          html += '<div class="sg6etlp-metaGrid">';
+          html += '<div><strong>Unit:</strong> ' + esc(L.unit) + '</div>';
+          html += '<div><strong>Lesson:</strong> ' + esc(L.title) + '</div>';
+          html += '<div><strong>Student Name:</strong> ______________________</div>';
+          html += '<div><strong>Date:</strong> ___/___/20__</div>';
+          html += '</div></div>';
+          html += '<div class="sg6etlp-wsTitle">Classroom Assessment &amp; Activity Sheet</div>';
+          for (var q = 0; q < L.ws.length; q++) {
+            html += '<div class="sg6etlp-wsQ">' + (q + 1) + '. ' + esc(L.ws[q]) + '</div>';
+            html += '<div class="sg6etlp-wsLine"></div><div class="sg6etlp-wsLine"></div>';
+          }
+          html += '<div class="sg6etlp-signRow">';
+          html += '<div class="sg6etlp-signCol"><div class="sg6etlp-signLine"></div>Marks / Grade: _________</div>';
+          html += '<div class="sg6etlp-signCol"><div class="sg6etlp-signLine"></div>Teacher\'s Signature</div>';
+          html += '<div class="sg6etlp-signCol"><div class="sg6etlp-signLine"></div>Parent / HM Signature</div>';
+          html += '</div>';
+          html += '<div class="sg6etlp-watermark">SmartGuruji</div>';
+          html += '</div>';
+        }
+      }
+      paperWrap.innerHTML = html;
+    }
+
+    btnGen.addEventListener("click", function (e) {
+      e.preventDefault();
+      var sel = checkedLessons();
+      if (!sel.length) {
+        msg("Please select at least one lesson.", false);
+        alert("Please select at least one lesson.");
+        return;
+      }
+      current = {
+        school: schoolEl.value.trim() || "GOVERNMENT HIGHER PRIMARY SCHOOL",
+        teacher: teacherEl.value.trim() || "_______________________",
+        year: yearEl.value.trim() || "2026-27",
+        periods: periodsEl.value,
+        lessons: sel
+      };
+      render();
+      previewArea.style.display = "block";
+      btnPrev.disabled = false;
+      btnPrint.disabled = false;
+      msg("Lesson Plan generated for " + sel.length + " lesson(s). Ready to Print / Save as PDF.", true);
+      setTimeout(function () {
+        try { previewArea.scrollIntoView({ behavior: "smooth", block: "start" }); }
+        catch (err) { previewArea.scrollIntoView(); }
+      }, 60);
+    });
+
+    btnAll.addEventListener("click", function () {
+      var vis = Array.prototype.slice.call(lessonWrap.querySelectorAll(".sg6etlp-lesson")).filter(function (el) { return el.style.display !== "none"; });
+      var allOn = vis.every(function (el) { return el.querySelector(".sg6etlp-chk").checked; });
+      vis.forEach(function (el) { el.querySelector(".sg6etlp-chk").checked = !allOn; });
+    });
+
+    btnPrev.addEventListener("click", function () {
+      if (!current) return;
+      try { previewArea.scrollIntoView({ behavior: "smooth", block: "start" }); }
+      catch (err) { previewArea.scrollIntoView(); }
+    });
+
+    btnPrint.addEventListener("click", function () {
+      if (!current) { alert("Please generate the lesson plan first."); return; }
+      window.print();
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initApp);
+  } else {
+    initApp();
+  }
+})();
+</script>
+
+</body>
+</html>
